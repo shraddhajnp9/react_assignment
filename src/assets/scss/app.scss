@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Sora', sans-serif;
+    scroll-snap-type: mandatory;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: darkgray;
+      border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: darkgray;
+    }
+  }
+
+  body {
+    @apply h-full overflow-x-hidden dark:text-slate-300 text-slate-600 font-normal text-[14px];
+    &.light,
+    &.skin--default {
+      @apply bg-slate-100;
+    }
+    &.lght,
+    &.skin--bordered {
+      @apply bg-transparent;
+    }
+    &.dark {
+      @apply bg-[#0f172a] text-slate-300;
+    }
+  }
+  html,
+  body {
+    @apply h-full text-[14px];
+  }
+
+  label {
+    @apply capitalize text-[14px];
+  }
+
+  .error-msg {
+    @apply text-red-500 text-[13px];
+  }
+
+  .menu_item {
+    @apply hover:bg-slate-900 hover:text-white dark:hover:bg-slate-600 dark:hover:bg-opacity-50 w-full border-b border-b-gray-500 border-opacity-10 px-4 py-2 text-sm  last:mb-0 cursor-pointer first:rounded-t last:rounded-b flex  space-x-2 items-center rtl:space-x-reverse;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  .dashcode-app-wrapper {
+    @apply relative;
+  }
+  .single-sidebar-menu .ReactCollapse--collapse {
+    transition: height 400ms;
+  }
+  .space-xy-5 {
+    > div,
+    > button,
+    > a,
+    label,
+    > * {
+      @apply mr-2 mb-2;
+    }
+  }
+  .space-xy-6 {
+    > div,
+    > button,
+    > a,
+    label,
+    > * {
+      @apply mr-4 mb-2;
+    }
+  }
+
+  html[dir='rtl'] {
+    .recharts-wrapper {
+      direction: rtl;
+    }
+    .recharts-yAxis {
+      .recharts-text {
+        text-anchor: start;
+      }
+    }
+  }
+  .dashcode-app {
+    .leaflet-control {
+      z-index: 0 !important;
+    }
+    .leaflet-control-container {
+      z-index: 555 !important;
+      position: relative;
+    }
+    .recharts-curve.recharts-tooltip-cursor {
+      display: none;
+    }
+    .recharts-wrapper.bar-chart {
+      .recharts-tooltip-cursor {
+        fill: transparent;
+      }
+    }
+    .recharts-tooltip-wrapper {
+      border: none !important;
+    }
+
+    // .recharts-cartesian-grid line,
+    // .recharts-polar-grid-angle line,
+    // .recharts-yAxis line,
+    // .recharts-xAxis line {
+    //   @apply stroke-black-200 dark:stroke-slate-700;
+    // }
+  }
+}
+@layer components {
+  @import 'components/table.scss';
+  @import 'components/map.scss';
+  @import 'components/progress';
+  @import 'components/tippy';
+  @import 'components/swiper';
+  @import 'components/alert';
+  @import 'components/card';
+  @import 'components/auth';
+  @import 'components/button';
+  @import 'components/badge';
+  @import 'components/typography';
+  @import 'components/form';
+  @import 'components/input-group';
+  @import 'components/react-select';
+  @import 'components/pagination';
+  @import 'components/breadcrumbs';
+  @import 'layout/header';
+  @import 'layout/footer';
+  @import 'layout/sidebar';
+  @import 'layout/settings';
+  @import 'utility/mix';
+  @import 'utility/loading';
+  @import 'utility/css-animation';
+  @import 'utility/calander';
+  @import 'utility/full-calender';
+  @import 'components/print.scss';
+}
+@layer utilities {
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: scale(1);
+  transition: all 500ms ease-in-out;
+  overflow-y: scroll;
+  padding-bottom: 4.5rem;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.table-responsive,
+.dataTables_scrollBody {
+  overflow: visible !important;
+}
+
+.table-responsive,
+.dataTables_scrollBody {
+  overflow: visible !important;
+}
+
+.table-responsive-disabled .dataTables_scrollBody {
+  overflow: hidden !important;
+}
+
+.color_picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 0.2rem;
+  margin: 0 0.2rem;
+}
+
+.color_picker::-moz-color-swatch {
+  border: none;
+  border-radius: 0.2rem;
+  margin: 0 0.2rem;
+}
+
+// Image preview
+
+.image-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  .image-preview-container {
+    position: relative;
+    width: 50%;
+    transform: scale(0.7);
+
+    .image-preview-image {
+      width: 100%;
+      margin: 0 auto;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .image-preview-image.zoomed {
+      transform: scale(1);
+      /* Adjust the scale factor as per your preference for zoom level */
+    }
+  }
+}
+
+// @media (min-width: 320px) and (max-width: 767px) {
+//   /* Hide the "Age" column */
+//   div[data-column-id='company_name'],
+//   div[data-column-id='phone_1'],
+//   div[data-column-id='email_1'],
+//   div[data-column-id='source'],
+//   div[data-column-id='reg_date'],
+//   div[data-column-id='action'] {
+//     display: none;
+//   }
+// }
+
+// @media (min-width: 768px) and (max-width: 991px) {
+//   /* Hide the "Age" column */
+//   div[data-column-id='phone_1'],
+//   div[data-column-id='email_1'],
+//   div[data-column-id='source'],
+//   div[data-column-id='reg_date'] {
+//     display: none;
+//   }
+// }
+
+// @media (min-width: 992px) and (max-width: 1199px) {
+//   /* Hide the "Age" column */
+//   div[data-column-id='email_1'],
+//   div[data-column-id='source'] {
+//     display: none;
+//   }
+// }
+
+button {
+  cursor: pointer;
+}

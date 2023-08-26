@@ -1,0 +1,88 @@
+:root {
+  --my-success: #28a745;
+  --my-warning: #ffc107;
+  --my-danger: #dc3545;
+  --my-whatsapp-blue-tick: #2492f2;
+  --my-link-color: #2492f2;
+  --my-enq-received: #fafa02;
+  --dxai-orange-color: #f58634;
+}
+
+@font-face {
+  font-family: 'dxaiLogoFont';
+  src: url('../fonts/Avenir_LT_Std_65_Medium.otf') format('opentype');
+}
+
+.dxai_orange_color {
+	color: var(--dxai-orange-color) !important;
+}
+
+.chat_page_brand {
+	font-family: 'dxaiLogoFont', serif;
+	font-size: 30px !important;
+}
+
+.chat_page_customer_brand {
+	font-family: 'dxaiLogoFont', serif;
+	font-size: 24px !important;
+}
+
+.whatsapp_chat_contacts_msg_icons {
+	font-size: 1.3em !important;
+}
+.whatsapp_msg_read_color {
+	color: var(--my-whatsapp-blue-tick) !important;
+}
+.whatsapp_msg_failed_color {
+	color: var(--my-danger) !important;
+}
+
+.my_enq_received {
+	background-color: var(--my-enq-received) !important;
+	color: #666 !important;
+}
+.my_font_success {
+	color: var(--my-success) !important;
+}
+.my_bg_success {
+	background-color: var(--my-success) !important;
+}
+.my_font_color_danger {
+	color: var(--my-danger) !important;
+}
+.my_bg_link_color {
+	background-color: var(--my-link-color) !important;
+}
+.my_font_link_color {
+	color: var(--my-link-color) !important;
+}
+
+.my_contacts_description {
+	top: 0 !important;
+	left: 100% !important;
+	z-index: 999999 !important;
+	width: fit-content !important;
+	white-space: nowrap !important ;
+}
+
+
+
+.chats_display_div a {
+	color: var(--my-link-color) !important;
+}
+.chats_display_div a:hover {
+	text-decoration: underline;
+}
+
+
+.logout_btn {
+	font-size: 1.3rem !important;
+}
+
+.logout_btn:hover {
+	color: var(--my-danger) !important;
+}
+
+.selected_contact {
+	background-color: #f1f1f1 !important;
+}
