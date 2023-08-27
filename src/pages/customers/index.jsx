@@ -1,191 +1,26 @@
 import Table from "@/components/ui/Table";
+import axios from "axios";
+import { useEffect, useState } from "react";
 const Customers = () => {
-  const data = [
-    {
-      id: 101,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 102,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 103,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 104,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 105,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 106,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 107,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 108,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 109,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 110,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 111,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 112,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 113,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 114,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 115,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 116,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 117,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 118,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 119,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-    {
-      id: 120,
-      company_name: "eBug Technoyug",
-      email_1: "ebug.technoyug@gmail.com",
-      source: "1",
-      reg_date: "2023-08-25",
-      customer_id: "C/250823/18554",
-      phone_1: "+91-9999432428",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  const getCustomers = async () => {
+    const response = await axios.post(
+      "https://05f3bd2c-040c-4d5c-a66c-64cb84d6a377.mock.pstmn.io/customers/index",
+      {
+        page_no: "1",
+        per_page: "20",
+      }
+    );
+    setData(response.data.data);
+  };
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
+
   return (
     <div>
-      <p>skjdfk</p>
-      sekfnrosngner
       <Table data={data} />
     </div>
   );

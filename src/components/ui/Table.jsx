@@ -4,7 +4,9 @@ function Table({ data }) {
   const [tableHeaders, setTableHeader] = useState();
 
   useEffect(() => {
-    setTableHeader([...Object.keys(data[0]), "action"]);
+    if (data?.length) {
+      setTableHeader([...Object.keys(data[0]), "action"]);
+    }
   }, [data]);
 
   const convertDateToYYYYMMDD = (dateStr) => {
@@ -26,6 +28,10 @@ function Table({ data }) {
 
     return `${date[2]}-${months[parseInt(date[1] - 1)]}-${date[0]}`;
   };
+
+  if (!data?.length) {
+    return <></>;
+  }
 
   return (
     <div>

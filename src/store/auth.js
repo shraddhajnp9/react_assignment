@@ -28,6 +28,7 @@ export const authSlice = createSlice({
   initialState: {
     users: initialUsers(),
     isAuth: initialIsAuth(),
+    customers: [],
   },
   reducers: {
     handleRegister: (state, action) => {
@@ -124,6 +125,7 @@ export const authSlice = createSlice({
         progress: undefined,
         theme: "colored",
       });
+      window.location.href = "/login";
     },
   },
 });
