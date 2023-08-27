@@ -5,6 +5,11 @@ export const menuItems = [
     link: 'dashboard'
   },
   {
+    title: "Customers",
+    icon: "ri:customer-service-2-fill",
+    link: "customers",
+  },
+  {
     title: 'Logout',
     icon: 'heroicons-outline:login',
     link: 'login'

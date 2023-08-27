@@ -13,8 +13,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import MobileMenu from '../components/partials/sidebar/MobileMenu'
 import useMobileMenu from '@/hooks/useMobileMenu'
 import MobileFooter from '@/components/partials/footer/MobileFooter'
-import { ToastContainer } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loading from '@/components/Loading'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -25,6 +24,13 @@ const Layout = () => {
   const dispatch = useDispatch()
 
   const location = useLocation()
+  const auth = useSelector((state) => state.auth.isAuth);
+
+  useEffect(() => {
+    if (auth === false) {
+      navigate("/login");
+    }
+  }, [auth]);
 
   // console.log(location)
 
@@ -54,7 +60,6 @@ const Layout = () => {
   } else {
     return (
       <>
-        <ToastContainer />
         <Header className={width > breakpoints.xl ? switchHeaderClass() : ''} />
         {menuType === 'vertical' && width > breakpoints.xl && !menuHidden && (
           <Sidebar />
