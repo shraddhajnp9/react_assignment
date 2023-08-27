@@ -65,6 +65,7 @@ export const authSlice = createSlice({
     },
 
     handleLogin: (state, action) => {
+      console.log('from reducer', action)
       state.isAuth = action.payload
       // save isAuth in local storage
       window.localStorage.setItem('isAuth', JSON.stringify(state.isAuth))

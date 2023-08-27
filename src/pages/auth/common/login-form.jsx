@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import GlobalContext from '../../../context/GlobalContext'
 
-const LoginForm = () => {
+const LoginForm = ({onSubmit = () => {}}) => {
   const { resetMsg, setResetMsg } = useContext(GlobalContext)
 
   return (
@@ -16,7 +16,7 @@ const LoginForm = () => {
       }}
     >
       {({ values, errors }) => (
-        <Form noValidate>
+        <Form noValidate onSubmit={(e) => onSubmit(e, values)}>
           <div className='flex items-start flex-col gap-1 mb-5'>
             <label htmlFor={'userId'}>User ID</label>
             <Field

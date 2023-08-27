@@ -1,0 +1,35 @@
+# Dependency folders
+node_modules/
+.cache/
+
+# Build output
+dist/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor-specific files
+.idea/
+.vscode/
+
+# Compiled output
+lib/
+build/
+.eslintcache/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Project-specific files
+*.log
+

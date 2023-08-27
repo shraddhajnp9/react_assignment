@@ -5,10 +5,19 @@ import useDarkMode from '@/hooks/useDarkMode'
 import { ToastContainer } from 'react-toastify'
 import GlobalContext from '../../context/GlobalContext'
 import bgImage from "@/assets/images/auth/ilst2.png";
+import {handleLogin} from '../../store/auth'
+import {useDispatch} from 'react-redux'
 
 const Login = () => {
   const [isDark] = useDarkMode()
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e, values) => {
+    e.preventDefault()
+    dispatch(handleLogin(values))
+  }
 
   return (
     <>
@@ -46,7 +55,7 @@ const Login = () => {
                     Sign in to manage your account
                   </div>*/}
                 </div>
-                <LoginForm />
+                <LoginForm onSubmit={handleSubmit} />
               </div>
               <div
                 className='auth-footer text-center'
