@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Submenu from './Submenu'
 import Icon from '@/components/ui/Icon'
 import { capitalizedLetter } from '../../../utils'
+import { toast } from 'react-toastify'
 
 const Navmenu = ({ menus, setMobileMenu, mobileMenu }) => {
   const [activeSubmenu, setActiveSubmenu] = useState(null)
@@ -73,13 +74,18 @@ const Navmenu = ({ menus, setMobileMenu, mobileMenu }) => {
               </NavLink>
             )}
             {item.link === 'login' && (
-              <NavLink className='menu-link'>
+              <button onClick={ () => {
+                localStorage.removeItem('token_id');
+                localStorage.removeItem('user_data');
+                window.location.href = '/login'
+            
+              }}>
                 <span className='menu-icon flex-grow-0'>
                   <Icon icon={item.icon} />
                 </span>
-                <div className='text-box flex-grow'>{item.title}</div>
+                {item.title}
                 {item.badge && <span className='menu-badge'>{item.badge}</span>}
-              </NavLink>
+              </button>
             )}
             {/* only for menulabel */}
             {item.isHeadr && !item.child && (

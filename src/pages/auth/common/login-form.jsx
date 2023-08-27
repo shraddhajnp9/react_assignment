@@ -7,7 +7,15 @@ import GlobalContext from '../../../context/GlobalContext'
 
 const LoginForm = ({onSubmit = () => {}}) => {
   const { resetMsg, setResetMsg } = useContext(GlobalContext)
-
+  useEffect( () => {
+  const token =  localStorage.getItem("token_id");
+  const user = localStorage.getItem("user_data");
+ 
+  if(token){
+    window.location.href = '/dashboard';
+    token = '';
+  }
+  } , [])
   return (
     <Formik
       initialValues={{

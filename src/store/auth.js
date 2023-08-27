@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const initialUsers = () => {
   const item = window.localStorage.getItem('users')
   return item
     ? JSON.parse(item)
     : [
-        {
-          id: uuidv4(),
-          name: 'dashcode',
-          userId: 'dashcode5432',
-          password: 'dashcode'
-        }
-      ]
+      {
+        id: uuidv4(),
+        name: 'dashcode',
+        userId: 'dashcode5432',
+        password: 'dashcode'
+      }
+    ]
 }
 // save users in local storage
 
@@ -64,25 +65,47 @@ export const authSlice = createSlice({
       }
     },
 
-    handleLogin: (state, action) => {
-      console.log('from reducer', action)
+    handleLogin: async (state, action) => {
+      //console.log('from reducer', action)
+      const response = await axios.post("https://05f3bd2c-040c-4d5c-a66c-64cb84d6a377.mock.pstmn.io/login/login", {
+        uid: action.payload.userId,
+        password: action.payload.password,
+      }).then(response => {
+        toast.success('User logged in successfully', {
+          position: 'top-right',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored'
+        })
+        localStorage.setItem("token_id", JSON.stringify(response.data.access_token));
+        localStorage.setItem("user_data", JSON.stringify(response.data.user));
+        //window.location.href = '/dashboard';
+      })
+      .catch(error => {
+        toast.error(error, {
+          position: 'top-right',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored'
+        })
+      })
       state.isAuth = action.payload
       // save isAuth in local storage
       window.localStorage.setItem('isAuth', JSON.stringify(state.isAuth))
-      toast.success('User logged in successfully', {
-        position: 'top-right',
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored'
-      })
+      
     },
     handleLogout: (state, action) => {
       // console.log(state);
       // console.log(action);
+      
       state.isAuth = action.payload
       // remove isAuth from local storage
       window.localStorage.removeItem('isAuth')
