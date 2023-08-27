@@ -1,52 +1,54 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import Submenu from './Submenu'
-import Icon from '@/components/ui/Icon'
-import { capitalizedLetter } from '../../../utils'
-import { toast } from 'react-toastify'
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import Submenu from "./Submenu";
+import Icon from "@/components/ui/Icon";
+import { capitalizedLetter } from "../../../utils";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { handleLogout } from "../../../store/auth";
 
 const Navmenu = ({ menus, setMobileMenu, mobileMenu }) => {
-  const [activeSubmenu, setActiveSubmenu] = useState(null)
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const dispatch = useDispatch();
 
   const toggleSubmenu = (i) => {
     if (activeSubmenu === i) {
-      setActiveSubmenu(null)
+      setActiveSubmenu(null);
     } else {
-      setActiveSubmenu(i)
+      setActiveSubmenu(i);
     }
-  }
+  };
 
-  const location = useLocation()
-  const navigate = useNavigate()
-  const locationName = location.pathname.replace('/', '')
+  const location = useLocation();
+  const navigate = useNavigate();
+  const locationName = location.pathname.replace("/", "");
 
   useEffect(() => {
     // console.log(`location`, location)
 
-    let submenuIndex = null
+    let submenuIndex = null;
     menus.map((item, i) => {
-      if (!item.child) return
+      if (!item.child) return;
       if (item.link === locationName) {
-        submenuIndex = null
+        submenuIndex = null;
       } else {
         const ciIndex = item.child.findIndex(
           (ci) => ci.childlink === locationName
-        )
+        );
         if (ciIndex !== -1) {
-          submenuIndex = i
+          submenuIndex = i;
         }
       }
-    })
+    });
 
-    if(locationName) {
+    if (locationName) {
       document.title = `${capitalizedLetter(locationName)}`;
-    }
-    else {
-      document.title = 'eBug'
+    } else {
+      document.title = "eBug";
     }
 
-    setActiveSubmenu(submenuIndex)
-  }, [location])
+    setActiveSubmenu(submenuIndex);
+  }, [location]);
 
   return (
     <>
@@ -55,65 +57,65 @@ const Navmenu = ({ menus, setMobileMenu, mobileMenu }) => {
           <li
             key={i}
             className={` single-sidebar-menu 
-              ${item.child ? 'item-has-children' : ''}
-              ${activeSubmenu === i ? 'open' : ''}
-              ${locationName === item.link ? 'menu-item-active' : ''}`}
+              ${item.child ? "item-has-children" : ""}
+              ${activeSubmenu === i ? "open" : ""}
+              ${locationName === item.link ? "menu-item-active" : ""}`}
           >
             {/* single menu with no childred*/}
-            {!item.child && !item.isHeadr && item.link !== 'login' && (
+            {!item.child && !item.isHeadr && item.link !== "login" && (
               <NavLink
-                className='menu-link'
+                className="menu-link"
                 to={item.link}
                 reloadDocument={mobileMenu}
               >
-                <span className='menu-icon flex-grow-0'>
+                <span className="menu-icon flex-grow-0">
                   <Icon icon={item.icon} />
                 </span>
-                <div className='text-box flex-grow'>{item.title}</div>
-                {item.badge && <span className='menu-badge'>{item.badge}</span>}
+                <div className="text-box flex-grow">{item.title}</div>
+                {item.badge && <span className="menu-badge">{item.badge}</span>}
               </NavLink>
             )}
-            {item.link === 'login' && (
-              <button onClick={ () => {
-                localStorage.removeItem('token_id');
-                localStorage.removeItem('user_data');
-                window.location.href = '/login'
-            
-              }}>
-                <span className='menu-icon flex-grow-0'>
+            {item.link === "login" && (
+              <button
+                className="menu-link"
+                onClick={() => {
+                  dispatch(handleLogout());
+                }}
+              >
+                <span className="menu-icon flex-grow-0">
                   <Icon icon={item.icon} />
                 </span>
-                {item.title}
-                {item.badge && <span className='menu-badge'>{item.badge}</span>}
+                <div className="text-box flex-grow">{item.title}</div>
+                {item.badge && <span className="menu-badge">{item.badge}</span>}
               </button>
             )}
             {/* only for menulabel */}
             {item.isHeadr && !item.child && (
-              <div className='menulabel'>{item.title}</div>
+              <div className="menulabel">{item.title}</div>
             )}
             {/*    !!sub menu parent   */}
             {item.child && (
               <div
                 className={`menu-link ${
                   activeSubmenu === i
-                    ? 'parent_active not-collapsed'
-                    : 'collapsed'
+                    ? "parent_active not-collapsed"
+                    : "collapsed"
                 }`}
                 onClick={() => toggleSubmenu(i)}
               >
-                <div className='flex-1 flex items-start'>
-                  <span className='menu-icon'>
+                <div className="flex-1 flex items-start">
+                  <span className="menu-icon">
                     <Icon icon={item.icon} />
                   </span>
-                  <div className='text-box'>{item.title}</div>
+                  <div className="text-box">{item.title}</div>
                 </div>
-                <div className='flex-0'>
+                <div className="flex-0">
                   <div
                     className={`menu-arrow transform transition-all duration-300 ${
-                      activeSubmenu === i ? ' rotate-90' : ''
+                      activeSubmenu === i ? " rotate-90" : ""
                     }`}
                   >
-                    <Icon icon='heroicons-outline:chevron-right' />
+                    <Icon icon="heroicons-outline:chevron-right" />
                   </div>
                 </div>
               </div>
@@ -129,7 +131,7 @@ const Navmenu = ({ menus, setMobileMenu, mobileMenu }) => {
         ))}
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default Navmenu
+export default Navmenu;
